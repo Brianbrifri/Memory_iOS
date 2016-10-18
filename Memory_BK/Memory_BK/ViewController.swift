@@ -26,14 +26,14 @@ class ViewController: UIViewController {
     //MARK: Game Mode Selector Function
     @IBAction func GameModeSelected(_ sender: UISegmentedControl) {
         switch GameModeSelector.selectedSegmentIndex {
-        case 0:
-            selectedMode = GameMode.TWOxTWO.rawValue
-        case 1:
-            selectedMode = GameMode.FOURxFOUR.rawValue
-        case 2:
-            selectedMode = GameMode.SIXxSIX.rawValue
-        default:
-            selectedMode = GameMode.TWOxTWO.rawValue
+            case 0:
+                selectedMode = GameMode.TWOxTWO.rawValue
+            case 1:
+                selectedMode = GameMode.FOURxFOUR.rawValue
+            case 2:
+                selectedMode = GameMode.SIXxSIX.rawValue
+            default:
+                selectedMode = GameMode.TWOxTWO.rawValue
         }
     }
     
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
     //and timer choice
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? GameController {
-            let destinationModel = CardModel(mode: selectedMode, timer: useTimer)
+            let destinationModel = CardModel(delegate: self as! CardModelDelegate, mode: selectedMode, timer: useTimer)
             destinationVC.model = destinationModel
         }
     }
