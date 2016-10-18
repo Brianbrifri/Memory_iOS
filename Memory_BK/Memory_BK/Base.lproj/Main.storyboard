@@ -118,6 +118,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="cardCollectionView" destination="e3f-gG-PKq" id="F3e-NZ-LPd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zzX-yK-ngW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

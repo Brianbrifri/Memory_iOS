@@ -2,19 +2,24 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    //MARK: View Outlets
     @IBOutlet weak var StartButton: UIButton!
     @IBOutlet weak var GameModeSelector: UISegmentedControl!
     @IBOutlet weak var TimerSwitch: UISwitch!
     
-    let TWOXTWO: Int = 0
-    let FOURXFOUR: Int = 1
-    let SIXXSIX: Int = 2
+    //MARK: GameMode Enum
+    enum GameMode: Int {
+        case TWOxTWO
+        case FOURxFOUR
+        case SIXxSIX
+    }
+
     
     private var gameMode:Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        gameMode = TWOXTWO
+        gameMode = GameMode.TWOxTWO.rawValue
         
     }
 
@@ -29,13 +34,13 @@ class ViewController: UIViewController {
     @IBAction func GameModeSelected(_ sender: UISegmentedControl) {
         switch GameModeSelector.selectedSegmentIndex {
         case 0:
-            gameMode = TWOXTWO
+            gameMode = GameMode.TWOxTWO.rawValue
         case 1:
-            gameMode = FOURXFOUR
+            gameMode = GameMode.FOURxFOUR.rawValue
         case 2:
-            gameMode = SIXXSIX
+            gameMode = GameMode.SIXxSIX.rawValue
         default:
-            gameMode = TWOXTWO
+            gameMode = GameMode.TWOxTWO.rawValue
         }
     }
     
