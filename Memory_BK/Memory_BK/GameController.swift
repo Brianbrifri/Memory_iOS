@@ -6,6 +6,8 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
 
     @IBOutlet weak var cardCollectionView: UICollectionView!
     
+    var model: CardModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         /// Set the datasource and delegate properties
