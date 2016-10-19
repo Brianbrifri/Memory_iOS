@@ -186,13 +186,13 @@
 			isa = PBXGroup;
 			children = (
 				846813E81DB48CB700A3EDD0 /* Support Files */,
-				846813F01DB5AA2F00A3EDD0 /* Card Layers */,
-				84B8B1381DB5E00200FEE9B2 /* Card Views */,
-				841336F51DB5BE430082D94A /* GameController.swift */,
 				846813BC1DB48C6B00A3EDD0 /* ViewController.swift */,
+				841336F51DB5BE430082D94A /* GameController.swift */,
+				846813EC1DB5A5C300A3EDD0 /* CardModel.swift */,
 				84B8B1361DB5D35400FEE9B2 /* GameControllerCollectionViewCell.swift */,
 				846813EA1DB5A00D00A3EDD0 /* Card.swift */,
-				846813EC1DB5A5C300A3EDD0 /* CardModel.swift */,
+				846813F01DB5AA2F00A3EDD0 /* Card Layers */,
+				84B8B1381DB5E00200FEE9B2 /* Card Views */,
 				846813BE1DB48C6B00A3EDD0 /* Main.storyboard */,
 			);
 			path = Memory_BK;
@@ -257,6 +257,16 @@
 			isa = PBXGroup;
 			children = (
 				84B8B1391DB5E03D00FEE9B2 /* CardBackView.swift */,
+				84B8B1861DB5F2F100FEE9B2 /* CardFrontView.swift */,
+				84B8B18A1DB7472F00FEE9B2 /* Original View */,
+			);
+			name = "Card Views";
+			sourceTree = "<group>";
+		};
+		84B8B18A1DB7472F00FEE9B2 /* Original View */ = {
+			isa = PBXGroup;
+			children = (
+				84B8B1841DB5EF1800FEE9B2 /* FrontViewProtocols.swift */,
 				84B8B13B1DB5E8FB00FEE9B2 /* CardView1.swift */,
 				84B8B13D1DB5E90F00FEE9B2 /* CardView2.swift */,
 				84B8B1401DB5E92700FEE9B2 /* CardView3.swift */,
@@ -275,10 +285,8 @@
 				84B8B15A1DB5E9E900FEE9B2 /* CardView16.swift */,
 				84B8B15C1DB5E9F100FEE9B2 /* CardView17.swift */,
 				84B8B15E1DB5EA0100FEE9B2 /* CardView18.swift */,
-				84B8B1841DB5EF1800FEE9B2 /* FrontViewProtocols.swift */,
-				84B8B1861DB5F2F100FEE9B2 /* CardFrontView.swift */,
 			);
-			name = "Card Views";
+			name = "Original View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
