@@ -76,6 +76,7 @@ class CardModel {
                 frontLayer = ListOfLayers[index]
             } while(chosen.contains(index))
             
+            print("Layer \(index + 1) chosen")
             chosen.append(index)
             
             //MARK: Create the front of the card with the chosen layer

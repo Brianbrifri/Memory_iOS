@@ -3,9 +3,7 @@ import UIKit
 
 class CardFrontView: UIView {
 
-    
     let frontLayer: CALayer
-    var isApplied: Bool = false
   
     init(frame: CGRect, layer: CALayer) {
         frontLayer = layer
@@ -20,9 +18,5 @@ class CardFrontView: UIView {
         frontLayer.frame = rect
         layer.addSublayer(frontLayer)
         frontLayer.needsDisplay()
-    }
-    
-    func apply() {
-        isApplied = true
     }
 }
