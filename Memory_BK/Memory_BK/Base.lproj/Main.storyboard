@@ -49,6 +49,9 @@
                                     <segment title="4x4"/>
                                     <segment title="6x6"/>
                                 </segments>
+                                <connections>
+                                    <action selector="GameModeSelected:" destination="BYZ-38-t0r" eventType="valueChanged" id="yL2-7V-YVk"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

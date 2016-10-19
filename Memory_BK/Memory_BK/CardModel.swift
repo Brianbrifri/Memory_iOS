@@ -89,6 +89,8 @@ class CardModel {
             card.addSubview(cardFrontView)
             index = Int(arc4random_uniform(UInt32(cardList.count)))
             cardList.insert(card, at: index)
+            print("Card added at index \(index)")
+
             
             //MARK: Duplicate the card and add to cardList
             matchingCard.setID(ID: i)
@@ -96,7 +98,7 @@ class CardModel {
             matchingCard.addSubview(cardFrontView)
             index = Int(arc4random_uniform(UInt32(cardList.count)))
             cardList.insert(matchingCard, at: index)
-            print("Matching Cards Added")
+            print("Matching Card added at index \(index)")
         }
 
         return cardList
