@@ -18,7 +18,6 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //stuff
         return model?.cardCollection.count ?? 0
     }
     

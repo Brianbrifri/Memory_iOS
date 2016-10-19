@@ -13,8 +13,10 @@ class CardModel {
     
     weak var delegate: CardModelDelegate?
     
-    var ListOfLayers: [CALayer]
-    var cardCollection: [Card]
+    var ListOfLayers: [CALayer] = []
+    var cardCollection: [Card] = []
+    let TOTAL_LAYERS: UInt32 = 18
+
     
     var cardLayer1:  CALayer = CardLayer1()
     var cardLayer2:  CALayer = CardLayer2()
@@ -35,6 +37,7 @@ class CardModel {
     var cardLayer17: CALayer = CardLayer17()
     var cardLayer18: CALayer = CardLayer18()
     
+    
     private var useTimer: Bool
     
     //MARK: Model init
@@ -50,59 +53,53 @@ class CardModel {
         ]
         
         //Initialize array of cards
-        cardCollection = initializeCards(grid: mode, layerList: ListOfLayers)
+        cardCollection = initializeCards(grid: mode)
+    }
+
+
+
+    //MARK: Card and CardList initilizer function
+    private func initializeCards(grid: Int) -> [Card] {
+        print("Got \(grid) in initializeCards")
+        
+        var cardList: [Card] = []
+        var chosen: [Int] = []
+        var index: Int
+        
+        //MARK: Create all the Cards
+        for i in 1...grid {
+            let cardBackView = CardBackView()
+            var frontLayer: CALayer
+            
+            repeat {
+                index = Int(arc4random_uniform(TOTAL_LAYERS))
+                frontLayer = ListOfLayers[index]
+            } while(chosen.contains(index))
+            
+            chosen.append(index)
+            
+            //MARK: Create the front of the card with the chosen layer
+            let cardFrontView = CardFrontView(frame: CGRect.zero, layer: frontLayer)
+            let card = Card()
+            let matchingCard = Card()
+            
+            //MARK: Set ID and add subview and add to cardList
+            card.setID(ID: i)
+            card.addSubview(cardBackView)
+            card.addSubview(cardFrontView)
+            index = Int(arc4random_uniform(UInt32(cardList.count)))
+            cardList.insert(card, at: index)
+            
+            //MARK: Duplicate the card and add to cardList
+            matchingCard.setID(ID: i)
+            matchingCard.addSubview(cardBackView)
+            matchingCard.addSubview(cardFrontView)
+            index = Int(arc4random_uniform(UInt32(cardList.count)))
+            cardList.insert(matchingCard, at: index)
+            print("Matching Cards Added")
+        }
+
+        return cardList
     }
 }
-
-
-//MARK: Card and CardList initilizer function
-private func initializeCards(grid: Int, layerList: [CALayer]) -> [Card] {
-    print("Got \(grid) in initializeCards")
-    
-    var cardList: [Card] = []
-    var chosen: [Int] = []
-    var randomIndex: UInt32
-    var index: Int
-    
-    //MARK: Create all the Cards
-    for i in 1...grid {
-        let cardBackView = CardBackView()
-        var frontLayer: CALayer
-        
-        repeat {
-            randomIndex = arc4random_uniform(18)
-            index = Int(randomIndex)
-            frontLayer = layerList[index]
-        } while(chosen.contains(index))
-        
-        chosen.append(index)
-        
-        //MARK: Create the front of the card with the chosen layer
-        let cardFrontView = CardFrontView(frame: CGRect.zero, layer: frontLayer)
-        let card = Card()
-        let matchingCard = Card()
-        
-        //MARK: Set ID and add subview and add to cardList
-        card.setID(ID: i)
-        card.addSubview(cardBackView)
-        card.addSubview(cardFrontView)
-        randomIndex = arc4random_uniform(UInt32(cardList.count))
-        index = Int(randomIndex)
-        cardList.insert(card, at: index)
-        
-        //MARK: Duplicate the card and add to cardList
-        matchingCard.setID(ID: i)
-        matchingCard.addSubview(cardBackView)
-        matchingCard.addSubview(cardFrontView)
-        randomIndex = arc4random_uniform(UInt32(cardList.count))
-        index = Int(randomIndex)
-        cardList.insert(matchingCard, at: index)
-        print("Matching Cards Added")
-    }
-    
-    
-    return cardList
-    
-}
-
 
