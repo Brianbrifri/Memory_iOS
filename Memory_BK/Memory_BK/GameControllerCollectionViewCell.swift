@@ -3,6 +3,6 @@ import UIKit
 
 class GameControllerCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var CardView: UIImageView!
+    @IBOutlet weak var CardView: Card!
     
 }

@@ -50,7 +50,7 @@
                                     <segment title="6x6"/>
                                 </segments>
                                 <connections>
-                                    <action selector="GameModeSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dWZ-SU-tY4"/>
+                                    <action selector="GameModeSelected:" destination="BYZ-38-t0r" eventType="valueChanged" id="fqE-xH-SIo"/>
                                 </connections>
                             </segmentedControl>
                         </subviews>

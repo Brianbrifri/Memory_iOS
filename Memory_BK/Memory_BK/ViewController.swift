@@ -9,9 +9,9 @@ class ViewController: UIViewController {
     
     //MARK: GameMode Enum
     enum GameMode: Int {
-        case TWOxTWO
-        case FOURxFOUR
-        case SIXxSIX
+        case TWOxTWO = 2
+        case FOURxFOUR = 8
+        case SIXxSIX = 18
     }
 
     
@@ -35,6 +35,7 @@ class ViewController: UIViewController {
             default:
                 selectedMode = GameMode.TWOxTWO.rawValue
         }
+        print("GameModeSelected switched to value \(selectedMode)")
     }
     
     //MARK: Timer Toggle Function
@@ -44,6 +45,7 @@ class ViewController: UIViewController {
         } else {
             useTimer = false
         }
+        print("Timer toggled to state \(useTimer)")
     }
     
     //MARK: Start Button Function
@@ -56,7 +58,7 @@ class ViewController: UIViewController {
     //and timer choice
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? GameController {
-            let destinationModel = CardModel(delegate: self as! CardModelDelegate, mode: selectedMode, timer: useTimer)
+            let destinationModel = CardModel.init(delegate: destinationVC as CardModelDelegate, mode: selectedMode, timer: useTimer)
             destinationVC.model = destinationModel
         }
     }

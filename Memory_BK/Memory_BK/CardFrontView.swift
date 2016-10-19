@@ -6,11 +6,7 @@ class CardFrontView: UIView {
     
     let frontLayer: CALayer
     var isApplied: Bool = false
-
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//    }
-    
+  
     init(frame: CGRect, layer: CALayer) {
         frontLayer = layer
         super.init(frame: frame)
