@@ -4,40 +4,16 @@ import Foundation
 import UIKit
 
 protocol CardModelDelegate: class {
-    //None yet
+    func setGameMode(with mode: Int)
 }
-
-
 
 class CardModel {
     
     weak var delegate: CardModelDelegate?
-    
-    var ListOfLayers: [CALayer] = []
     var cardCollection: [Card] = []
-    let TOTAL_LAYERS: UInt32 = 18
-
-    
-    var cardLayer1:  CALayer = CardLayer1()
-    var cardLayer2:  CALayer = CardLayer2()
-    var cardLayer3:  CALayer = CardLayer3()
-    var cardLayer4:  CALayer = CardLayer4()
-    var cardLayer5:  CALayer = CardLayer5()
-    var cardLayer6:  CALayer = CardLayer6()
-    var cardLayer7:  CALayer = CardLayer7()
-    var cardLayer8:  CALayer = CardLayer8()
-    var cardLayer9:  CALayer = CardLayer9()
-    var cardLayer10: CALayer = CardLayer10()
-    var cardLayer11: CALayer = CardLayer11()
-    var cardLayer12: CALayer = CardLayer12()
-    var cardLayer13: CALayer = CardLayer13()
-    var cardLayer14: CALayer = CardLayer14()
-    var cardLayer15: CALayer = CardLayer15()
-    var cardLayer16: CALayer = CardLayer16()
-    var cardLayer17: CALayer = CardLayer17()
-    var cardLayer18: CALayer = CardLayer18()
-    
-    
+    private let TOTAL_LAYERS: UInt32 = 18
+    private let BACKTAG = 100
+    private let FRONTTAG = 200
     private var useTimer: Bool
     
     //MARK: Model init
@@ -45,23 +21,19 @@ class CardModel {
     init(delegate: CardModelDelegate, mode: Int, timer: Bool) {
         self.delegate = delegate
         useTimer = timer
-        
-        //Initialize array of layers
-        ListOfLayers = [
-            cardLayer1, cardLayer2, cardLayer3, cardLayer4, cardLayer5, cardLayer6, cardLayer7, cardLayer8, cardLayer9,
-            cardLayer10, cardLayer11, cardLayer12, cardLayer13, cardLayer14, cardLayer15, cardLayer16, cardLayer17, cardLayer18
-        ]
-        
+
         //Initialize array of cards
         cardCollection = initializeCards(grid: mode)
+        self.delegate?.setGameMode(with: mode)
     }
 
-
-
+    //MARK: Check game state after card flip
+    func updateGameState(with card: Card, and index: Int) {
+        card.flip()
+    }
+    
     //MARK: Card and CardList initilizer function
     private func initializeCards(grid: Int) -> [Card] {
-        print("Got \(grid) in initializeCards")
-        
         var cardList: [Card] = []
         var chosen: [Int] = []
         var index: Int
@@ -69,22 +41,25 @@ class CardModel {
         //MARK: Create all the Cards
         for i in 1...grid {
             let cardBackView = CardBackView()
-            var frontLayer: CALayer
+            cardBackView.tag = BACKTAG
             
+            //MARK: While loop to choose random layer types
             repeat {
                 index = Int(arc4random_uniform(TOTAL_LAYERS))
-                frontLayer = ListOfLayers[index]
             } while(chosen.contains(index))
             
+            //MARK: Create two matching layers to add to two cards
+            let frontLayer = FrontLayer.init(with: index)
+            let matchingFrontLayer = FrontLayer.init(with: index)
+            
             print("Layer \(index + 1) chosen")
+            
             chosen.append(index)
             
-            //MARK: Create the front of the card with the chosen layer
-            let cardFrontView = CardFrontView(frame: CGRect.zero, layer: frontLayer)
-            let card = Card()
-            let matchingCard = Card()
-            
             //MARK: Set ID and add subview and add to cardList
+            let card = Card()
+            let cardFrontView = CardFrontView(frame: CGRect.zero, layer: frontLayer)
+            cardFrontView.tag = 200
             card.setID(ID: i)
             card.addSubview(cardBackView)
             card.addSubview(cardFrontView)
@@ -92,11 +67,13 @@ class CardModel {
             cardList.insert(card, at: index)
             print("Card added at index \(index)")
 
-            
             //MARK: Duplicate the card and add to cardList
+            let matchingCard = Card()
+            let matchingCardFrontView = CardFrontView(frame: CGRect.zero, layer: matchingFrontLayer)
+            matchingCardFrontView.tag = FRONTTAG
             matchingCard.setID(ID: i)
             matchingCard.addSubview(cardBackView)
-            matchingCard.addSubview(cardFrontView)
+            matchingCard.addSubview(matchingCardFrontView)
             index = Int(arc4random_uniform(UInt32(cardList.count)))
             cardList.insert(matchingCard, at: index)
             print("Matching Card added at index \(index)")
