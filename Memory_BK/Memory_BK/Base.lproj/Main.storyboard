@@ -112,14 +112,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="141" height="167"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ad5-Uc-EVO">
-                                                    <frame key="frameInset" width="141" height="167"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ad5-Uc-EVO">
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="ad5-Uc-EVO" firstAttribute="top" secondItem="kAn-V4-Qy9" secondAttribute="top" id="HTV-Fb-OAs"/>
+                                            <constraint firstAttribute="trailing" secondItem="ad5-Uc-EVO" secondAttribute="trailing" id="KV6-xK-UMe"/>
+                                            <constraint firstItem="ad5-Uc-EVO" firstAttribute="leading" secondItem="kAn-V4-Qy9" secondAttribute="leading" id="bm9-Jw-7Ub"/>
+                                            <constraint firstAttribute="bottom" secondItem="ad5-Uc-EVO" secondAttribute="bottom" id="sj4-lF-U31"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="CardView" destination="ad5-Uc-EVO" id="ARX-lj-PRW"/>
                                         </connections>

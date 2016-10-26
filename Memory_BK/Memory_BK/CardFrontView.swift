@@ -16,6 +16,7 @@ class CardFrontView: UIView {
     
     override func draw(_ rect: CGRect) {
         frontLayer.frame = rect
+        frontLayer.backgroundColor = UIColor.green.cgColor
         layer.addSublayer(frontLayer)
         frontLayer.needsDisplay()
     }

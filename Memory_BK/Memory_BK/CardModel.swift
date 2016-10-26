@@ -5,6 +5,7 @@ import UIKit
 
 protocol CardModelDelegate: class {
     func setGameMode(with mode: Int)
+    func flipCardsBack(card1: Card, card2: Card)
 }
 
 class CardModel {
@@ -15,6 +16,8 @@ class CardModel {
     private let BACKTAG = 100
     private let FRONTTAG = 200
     private var useTimer: Bool
+    private var cardToBeMatched = Card()
+    private var needsMatching = false
     
     //MARK: Model init
     //with the size the user chooses
@@ -28,8 +31,21 @@ class CardModel {
     }
 
     //MARK: Check game state after card flip
-    func updateGameState(with card: Card, and index: Int) {
-        card.flip()
+    func updateGameState(with index: Int) {
+        if needsMatching {
+            needsMatching = false
+            if cardToBeMatched.getID() == cardCollection[index].getID() {
+                print("MATCH!!!")
+            }
+            else {
+                delegate?.flipCardsBack(card1: cardToBeMatched, card2: cardCollection[index])
+                print("Bad choice brah :(")
+            }
+        }
+        else {
+            cardToBeMatched = cardCollection[index]
+            needsMatching = true
+        }
     }
     
     //MARK: Card and CardList initilizer function
