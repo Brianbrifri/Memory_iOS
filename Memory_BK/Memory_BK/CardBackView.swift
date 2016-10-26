@@ -3,15 +3,12 @@ import UIKit
 
 class CardBackView: UIView {
 
-    let backLayer = CardBackLayer()
-    var label = UILabel()
-
-    override func draw(_ rect: CGRect) {
-        label.text = "slkdjaoidjPOISjdopaijd"
-        backLayer.backgroundColor = UIColor.red.cgColor
-        backLayer.frame = rect
-        layer.addSublayer(backLayer)
-        backLayer.needsDisplay()
-
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = UIColor.black
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 }

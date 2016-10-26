@@ -3,22 +3,22 @@ import UIKit
 
 class CardFrontView: UIView {
 
-    let frontLayer: CALayer
+    var frontLabel = UILabel()
   
-    init(frame: CGRect, layer: CALayer) {
-        frontLayer = layer
+    override init(frame: CGRect) {
         super.init(frame: frame)
+        addSubview(frontLabel)
+        frontLabel.translatesAutoresizingMaskIntoConstraints = false
+        frontLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        frontLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        frontLabel.textAlignment = .center
+        frontLabel.font = UIFont.systemFont(ofSize: 48)
+        frontLabel.text = "💩" // default text for noticing if a view didn't load the card data right
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
-    override func draw(_ rect: CGRect) {
-        frontLayer.frame = rect
-        frontLayer.backgroundColor = UIColor.green.cgColor
-        layer.addSublayer(frontLayer)
-        frontLayer.needsDisplay()
-    }
 }
 

@@ -23,9 +23,11 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as! GameControllerCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as? GameControllerCollectionViewCell else {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        }
         cell.CardView = model?.cardCollection[indexPath.item]
-        cell.CardView.frame = cell.contentView.frame
+//        cell.CardView.frame = cell.contentView.frame
         print(cell.CardView.getID())
         return cell
     }
@@ -49,7 +51,7 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as! GameControllerCollectionViewCell
         cell.CardView = model?.cardCollection[indexPath.item]
 
-        cell.CardView.frame = cell.contentView.frame
+//        cell.CardView.frame = cell.contentView.frame
     }
     
     //Dirty hack just to get all cells on screen for now
