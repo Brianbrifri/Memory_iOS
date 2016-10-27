@@ -3,15 +3,15 @@ import UIKit
 
 class CardBackView: UIView {
 
-    let backLayer = CardBackLayer()
     var label = UILabel()
 
     override func draw(_ rect: CGRect) {
+        addSubview(label)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        label.translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = UIColor.red
         label.text = "slkdjaoidjPOISjdopaijd"
-        backLayer.backgroundColor = UIColor.red.cgColor
-        backLayer.frame = rect
-        layer.addSublayer(backLayer)
-        backLayer.needsDisplay()
 
     }
 }
+	

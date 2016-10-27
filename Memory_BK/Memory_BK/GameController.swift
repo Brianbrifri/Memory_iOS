@@ -25,8 +25,8 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as! GameControllerCollectionViewCell
         cell.CardView = model?.cardCollection[indexPath.item]
-        cell.CardView.frame = cell.contentView.frame
-        print(cell.CardView.getID())
+//        cell.CardView.frame = cell.contentView.frame
+//        print(cell.CardView.getID())
         return cell
     }
     
@@ -44,13 +44,13 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
         card1.flip()
         card2.flip()
     }
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as! GameControllerCollectionViewCell
-        cell.CardView = model?.cardCollection[indexPath.item]
-
-        cell.CardView.frame = cell.contentView.frame
-    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as! GameControllerCollectionViewCell
+//        cell.CardView = model?.cardCollection[indexPath.item]
+//
+//        cell.CardView.frame = cell.contentView.frame
+//    }
     
     //Dirty hack just to get all cells on screen for now
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

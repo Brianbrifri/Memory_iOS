@@ -8,12 +8,24 @@ class Card: UIView {
     var notMatched: Bool = true
     private let BACKTAG = 100
     private let FRONTTAG = 200
-    var frontView = UIView()
-    var backView = UIView()
+    var frontView = CardFrontView()
+    var backView = CardBackView()
+    
+    override init(frame:CGRect) {
+        super.init(frame: frame)
+        addSubview(frontView)
+        addSubview(backView)
+        frontView.isHidden = true
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
     override func layoutSubviews() {
         backgroundColor = UIColor(red: 0.00, green: 0.95, blue: 0.95, alpha: 1.0)
         super.layoutSubviews()
+
     }
     
     //MARK: Adds the subview then calls setupView
@@ -22,18 +34,18 @@ class Card: UIView {
         setupView(with: view)
 
         //MARK: Setup frontView and backView vars based on tags of subviews added
-        switch view.tag {
-        case BACKTAG:
-            backView = view
-            backView.backgroundColor = UIColor.green
-            print("Found view with BACKTAG")
-        case FRONTTAG:
-            frontView = view
-            frontView.backgroundColor = UIColor.red
-            print("Found view with FRONTTAG")
-        default:
-            print("Added view with incorrect tag")
-        }
+//        switch view.tag {
+//        case BACKTAG:
+//            backView = view
+//            backView.backgroundColor = UIColor.green
+//            print("Found view with BACKTAG")
+//        case FRONTTAG:
+//            frontView = view
+//            frontView.backgroundColor = UIColor.red
+//            print("Found view with FRONTTAG")
+//        default:
+//            print("Added view with incorrect tag")
+//        }
     }
     
     //MARK: Sets the subview constraints to itself

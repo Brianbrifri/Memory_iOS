@@ -65,8 +65,6 @@ class CardModel {
             } while(chosen.contains(index))
             
             //MARK: Create two matching layers to add to two cards
-            let frontLayer = FrontLayer.init(with: index)
-            let matchingFrontLayer = FrontLayer.init(with: index)
             
             print("Layer \(index + 1) chosen")
             
@@ -74,22 +72,14 @@ class CardModel {
             
             //MARK: Set ID and add subview and add to cardList
             let card = Card()
-            let cardFrontView = CardFrontView(frame: CGRect.zero, layer: frontLayer)
-            cardFrontView.tag = 200
             card.setID(ID: i)
-            card.addSubview(cardBackView)
-            card.addSubview(cardFrontView)
             index = Int(arc4random_uniform(UInt32(cardList.count)))
             cardList.insert(card, at: index)
             print("Card added at index \(index)")
 
             //MARK: Duplicate the card and add to cardList
             let matchingCard = Card()
-            let matchingCardFrontView = CardFrontView(frame: CGRect.zero, layer: matchingFrontLayer)
-            matchingCardFrontView.tag = FRONTTAG
             matchingCard.setID(ID: i)
-            matchingCard.addSubview(cardBackView)
-            matchingCard.addSubview(matchingCardFrontView)
             index = Int(arc4random_uniform(UInt32(cardList.count)))
             cardList.insert(matchingCard, at: index)
             print("Matching Card added at index \(index)")
