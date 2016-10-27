@@ -125,7 +125,7 @@
                                             <constraint firstAttribute="bottom" secondItem="ad5-Uc-EVO" secondAttribute="bottom" id="sj4-lF-U31"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="CardView" destination="ad5-Uc-EVO" id="ARX-lj-PRW"/>
+                                            <outlet property="cellCardView" destination="ad5-Uc-EVO" id="NDL-bm-Ibp"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

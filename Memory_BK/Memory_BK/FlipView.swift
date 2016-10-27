@@ -1,5 +1,5 @@
 //
-//  Card.swift
+//  FlipView.swift
 //  Memory_BK
 //
 //  Created by vm mac on 10/26/16.
@@ -8,19 +8,18 @@
 
 import UIKit
 
-class Card: UIView {
-
+class FlipView: UIView {
     override func layoutSubviews() {
-        backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
+        backgroundColor = UIColor.black
         super.layoutSubviews()
     }
     
     override func addSubview(_ view: UIView) {
         super.addSubview(view)
-        setupView(with: view)
+        setupView(with: view) // sets up how the view will look
     }
     
-    private func setupView(with view: UIView) {
+    fileprivate func setupView(with view: UIView) {
         subviews.forEach { (subView) in
             subView.translatesAutoresizingMaskIntoConstraints = false
             subView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -29,5 +28,5 @@ class Card: UIView {
             subView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         }
     }
-
+    
 }

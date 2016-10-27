@@ -15,13 +15,11 @@
 		846813C51DB48C6B00A3EDD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846813C31DB48C6B00A3EDD0 /* LaunchScreen.storyboard */; };
 		846813D01DB48C6B00A3EDD0 /* Memory_BKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846813CF1DB48C6B00A3EDD0 /* Memory_BKTests.swift */; };
 		846813DB1DB48C6B00A3EDD0 /* Memory_BKUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846813DA1DB48C6B00A3EDD0 /* Memory_BKUITests.swift */; };
-		846813EB1DB5A00D00A3EDD0 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846813EA1DB5A00D00A3EDD0 /* Card.swift */; };
 		846813ED1DB5A5C300A3EDD0 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846813EC1DB5A5C300A3EDD0 /* CardModel.swift */; };
-		846813EF1DB5A63200A3EDD0 /* CardBackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846813EE1DB5A63200A3EDD0 /* CardBackLayer.swift */; };
-		84B8B1371DB5D35400FEE9B2 /* GameControllerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8B1361DB5D35400FEE9B2 /* GameControllerCollectionViewCell.swift */; };
-		84B8B13A1DB5E03D00FEE9B2 /* CardBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8B1391DB5E03D00FEE9B2 /* CardBackView.swift */; };
-		84B8B1871DB5F2F100FEE9B2 /* CardFrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8B1861DB5F2F100FEE9B2 /* CardFrontView.swift */; };
-		84B8B18C1DB85B0700FEE9B2 /* FrontLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8B18B1DB85B0700FEE9B2 /* FrontLayer.swift */; };
+		84BB27B41DC1A32C00B06A63 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BB27B31DC1A32C00B06A63 /* Card.swift */; };
+		84BB27B61DC1A3A300B06A63 /* FrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BB27B51DC1A3A300B06A63 /* FrontView.swift */; };
+		84BB27B81DC1A3AC00B06A63 /* BackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BB27B71DC1A3AC00B06A63 /* BackView.swift */; };
+		84BB27BA1DC1A41500B06A63 /* GameControllerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BB27B91DC1A41500B06A63 /* GameControllerCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,13 +54,11 @@
 		846813D61DB48C6B00A3EDD0 /* Memory_BKUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Memory_BKUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		846813DA1DB48C6B00A3EDD0 /* Memory_BKUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory_BKUITests.swift; sourceTree = "<group>"; };
 		846813DC1DB48C6B00A3EDD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		846813EA1DB5A00D00A3EDD0 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		846813EC1DB5A5C300A3EDD0 /* CardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
-		846813EE1DB5A63200A3EDD0 /* CardBackLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBackLayer.swift; sourceTree = "<group>"; };
-		84B8B1361DB5D35400FEE9B2 /* GameControllerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameControllerCollectionViewCell.swift; sourceTree = "<group>"; };
-		84B8B1391DB5E03D00FEE9B2 /* CardBackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBackView.swift; sourceTree = "<group>"; };
-		84B8B1861DB5F2F100FEE9B2 /* CardFrontView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardFrontView.swift; sourceTree = "<group>"; };
-		84B8B18B1DB85B0700FEE9B2 /* FrontLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontLayer.swift; sourceTree = "<group>"; };
+		84BB27B31DC1A32C00B06A63 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		84BB27B51DC1A3A300B06A63 /* FrontView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontView.swift; sourceTree = "<group>"; };
+		84BB27B71DC1A3AC00B06A63 /* BackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackView.swift; sourceTree = "<group>"; };
+		84BB27B91DC1A41500B06A63 /* GameControllerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameControllerCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,11 +112,11 @@
 				846813E81DB48CB700A3EDD0 /* Support Files */,
 				846813BC1DB48C6B00A3EDD0 /* ViewController.swift */,
 				841336F51DB5BE430082D94A /* GameController.swift */,
+				84BB27B31DC1A32C00B06A63 /* Card.swift */,
+				84BB27B91DC1A41500B06A63 /* GameControllerCollectionViewCell.swift */,
+				84BB27B51DC1A3A300B06A63 /* FrontView.swift */,
+				84BB27B71DC1A3AC00B06A63 /* BackView.swift */,
 				846813EC1DB5A5C300A3EDD0 /* CardModel.swift */,
-				84B8B1361DB5D35400FEE9B2 /* GameControllerCollectionViewCell.swift */,
-				846813EA1DB5A00D00A3EDD0 /* Card.swift */,
-				846813F01DB5AA2F00A3EDD0 /* Card Layers */,
-				84B8B1381DB5E00200FEE9B2 /* Card Views */,
 				846813BE1DB48C6B00A3EDD0 /* Main.storyboard */,
 			);
 			path = Memory_BK;
@@ -153,24 +149,6 @@
 				846813C61DB48C6B00A3EDD0 /* Info.plist */,
 			);
 			name = "Support Files";
-			sourceTree = "<group>";
-		};
-		846813F01DB5AA2F00A3EDD0 /* Card Layers */ = {
-			isa = PBXGroup;
-			children = (
-				846813EE1DB5A63200A3EDD0 /* CardBackLayer.swift */,
-				84B8B18B1DB85B0700FEE9B2 /* FrontLayer.swift */,
-			);
-			name = "Card Layers";
-			sourceTree = "<group>";
-		};
-		84B8B1381DB5E00200FEE9B2 /* Card Views */ = {
-			isa = PBXGroup;
-			children = (
-				84B8B1391DB5E03D00FEE9B2 /* CardBackView.swift */,
-				84B8B1861DB5F2F100FEE9B2 /* CardFrontView.swift */,
-			);
-			name = "Card Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,16 +286,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84B8B1871DB5F2F100FEE9B2 /* CardFrontView.swift in Sources */,
 				846813BD1DB48C6B00A3EDD0 /* ViewController.swift in Sources */,
 				841336F61DB5BE430082D94A /* GameController.swift in Sources */,
+				84BB27B61DC1A3A300B06A63 /* FrontView.swift in Sources */,
+				84BB27B41DC1A32C00B06A63 /* Card.swift in Sources */,
 				846813ED1DB5A5C300A3EDD0 /* CardModel.swift in Sources */,
-				84B8B13A1DB5E03D00FEE9B2 /* CardBackView.swift in Sources */,
-				846813EB1DB5A00D00A3EDD0 /* Card.swift in Sources */,
 				846813BB1DB48C6B00A3EDD0 /* AppDelegate.swift in Sources */,
-				84B8B18C1DB85B0700FEE9B2 /* FrontLayer.swift in Sources */,
-				84B8B1371DB5D35400FEE9B2 /* GameControllerCollectionViewCell.swift in Sources */,
-				846813EF1DB5A63200A3EDD0 /* CardBackLayer.swift in Sources */,
+				84BB27BA1DC1A41500B06A63 /* GameControllerCollectionViewCell.swift in Sources */,
+				84BB27B81DC1A3AC00B06A63 /* BackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
