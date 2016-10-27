@@ -1,7 +1,7 @@
 
 import UIKit
 
-class GameController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,  CardModelDelegate{
+class GameController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, CardModelDelegate{
     
 
     @IBOutlet weak var cardCollectionView: UICollectionView!
@@ -23,11 +23,21 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as! GameControllerCollectionViewCell
-        cell.cellCardView = Card()
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as? GameControllerCollectionViewCell else {
+            return
+        }
+//        cell?.flip()
+        UIView.transition(with: cell.cellCardView, duration: 0.5, options: .transitionFlipFromRight, animations: {
+            cell.frontView.isHidden = (cell.isFaceUp)
+            cell.backView.isHidden = !(cell.isFaceUp)
+            (cell.isFaceUp) = (!cell.isFaceUp)
+            }, completion: nil)
+        print("selected cell")
+        
 //        guard let cell = model?.cardCollection[indexPath.item] else {
 //            return
 //        }
