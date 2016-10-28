@@ -16,6 +16,7 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
         cardCollectionView.delegate = self
         // Set the navigation bar title
         title = "Match Time!"
+//        self.view.addSubview(cardCollectionView)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -26,23 +27,41 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as? GameControllerCollectionViewCell else {
             return collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         }
-        cell.CardView = model?.cardCollection[indexPath.item]
+        
+        let cardBackView = CardBackView(frame: cell.contentView.frame)
+        let cardFrontView = CardFrontView(frame: cell.contentView.frame)
+        
+        cardBackView.tag = 100
+        cardFrontView.tag = 200
+        
+        cell.CardView.addSubview(cardFrontView)
+        cell.CardView.addSubview(cardBackView)
+        
+//        cell.CardView = model?.cardCollection[indexPath.item]
 //        cell.CardView.frame = cell.contentView.frame
-        print(cell.CardView.getID())
+//        print(cell.CardView.getID())
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = model?.cardCollection[indexPath.item] else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as? GameControllerCollectionViewCell else {
             return
         }
-        cell.flip()
+//        cell.flip()
+        UIView.transition(with: cell.CardView, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+            cell.cardFrontView.isHidden = cell.isFaceUp
+            cell.cardBackView.isHidden = !cell.isFaceUp
+            cell.isFaceUp = !cell.isFaceUp
+            print("front view: \(cell.cardFrontView.isHidden)")
+            print("back view: \(cell.cardBackView.isHidden)")
+            print("isFaceUp: \(cell.isFaceUp)")
+        }, completion: nil)
         print(cell)
-        model?.updateGameState(with: indexPath.item)
+//        model?.updateGameState(with: indexPath.item)
     }
     
 
-    func flipCardsBack(card1: Card, card2: Card) {
+    func flipCardsBack(card1: GameControllerCollectionViewCell, card2: GameControllerCollectionViewCell) {
         card1.flip()
         card2.flip()
     }

@@ -23,18 +23,18 @@ class Card: UIView {
         setupView(with: view)
 
         //MARK: Setup frontView and backView vars based on tags of subviews added
-//        switch view.tag {
-//        case BACKTAG:
-//            backView = view
-//            backView.backgroundColor = UIColor.green
-//            print("Found view with BACKTAG")
-//        case FRONTTAG:
-//            frontView = view
-//            frontView.backgroundColor = UIColor.red
-//            print("Found view with FRONTTAG")
-//        default:
-//            print("Added view with incorrect tag")
-//        }
+        switch view.tag {
+        case BACKTAG:
+            backView = view
+            backView.backgroundColor = UIColor.green
+            print("Found view with BACKTAG")
+        case FRONTTAG:
+            frontView = view
+            frontView.backgroundColor = UIColor.red
+            print("Found view with FRONTTAG")
+        default:
+            print("Added view with incorrect tag")
+        }
     }
     
     //MARK: Sets the subview constraints to itself

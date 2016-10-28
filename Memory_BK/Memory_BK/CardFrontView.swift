@@ -13,7 +13,7 @@ class CardFrontView: UIView {
         frontLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         frontLabel.textAlignment = .center
         frontLabel.font = UIFont.systemFont(ofSize: 48)
-        frontLabel.text = "💩" // default text for noticing if a view didn't load the card data right
+        frontLabel.text = "💩"
     }
     
     required init?(coder aDecoder: NSCoder) {
