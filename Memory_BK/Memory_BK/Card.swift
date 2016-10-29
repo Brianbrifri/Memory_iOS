@@ -8,9 +8,14 @@ class Card: UIView {
     var notMatched: Bool = true
     private let BACKTAG = 100
     private let FRONTTAG = 200
+    
+    //Make these optional if adding subviews from GameController
     var frontView = CardFrontView(frame: CGRect.zero)
     var backView = CardBackView(frame: CGRect.zero)
     
+    
+    //Get rid of this method if add subviews from
+    //GameController
     override func draw(_ rect: CGRect) {
         addSubview(frontView)
         addSubview(backView)
@@ -23,6 +28,9 @@ class Card: UIView {
     }
     
     //MARK: Adds the subview then calls setupView
+    //If you uncomment the switch function, you should add
+    //the subviews in the GamController then the switch will
+    //set the local variables to the correct view added
     override func addSubview(_ view: UIView) {
         super.addSubview(view)
         setupView(with: view)

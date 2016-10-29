@@ -31,26 +31,36 @@ class CardModel {
     }
 
     //MARK: Check game state after card flip
+    //Takes in a cell and checks its id to the one that is already flipped
+    //for some reason, it is always -1 even if I set it explicitly
     func updateGameState(with cell: GameControllerCollectionViewCell) {
         print("updateGameState called with cell.CardView.ID: \(cell.CardView.getID())")
         if needsMatching {
             needsMatching = false
             if cardToBeMatched.CardView.getID() == cell.CardView.getID() {
+                //Just calling this function here because all the cards are matching
+                //due to them all having -1 for the ID for some reason
                 delegate?.flipCardsBack(card1: cardToBeMatched, card2: cell)
                 print("MATCH!!!")
             }
             else {
+                //They don't match so flip them back
                 delegate?.flipCardsBack(card1: cardToBeMatched, card2: cell)
                 print("Bad choice brah :(")
             }
         }
         else {
+            //There is no card waiting to be matched so
+            //set the variable to the one to be matched
             cardToBeMatched = cell
             needsMatching = true
         }
     }
     
     //MARK: Card and CardList initilizer function
+    //This is probably out of date? I am setting the 
+    //cell.CardView to one of these cards and the display works
+    //not sure if still need this
     private func initializeCards(grid: Int) -> [Card] {
         var cardList: [Card] = []
         var index: Int
