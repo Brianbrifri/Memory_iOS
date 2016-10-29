@@ -51,26 +51,12 @@ class CardModel {
     //MARK: Card and CardList initilizer function
     private func initializeCards(grid: Int) -> [Card] {
         var cardList: [Card] = []
-        var chosen: [Int] = []
         var index: Int
         
         //MARK: Create all the Cards
         for i in 1...grid {
-            let cardBackView = CardBackView()
-            cardBackView.tag = BACKTAG
-            
-            //MARK: While loop to choose random layer types
-            repeat {
-                index = Int(arc4random_uniform(TOTAL_LAYERS))
-            } while(chosen.contains(index))
-            
-            //MARK: Create two matching layers to add to two cards
-            
-            print("Layer \(index + 1) chosen")
-            
-            chosen.append(index)
-            
-            //MARK: Set ID and add subview and add to cardList
+           
+            //MARK: Set ID and add to list
             let card = Card()
             card.setID(ID: i)
             index = Int(arc4random_uniform(UInt32(cardList.count)))

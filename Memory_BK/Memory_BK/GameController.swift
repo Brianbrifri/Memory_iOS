@@ -23,20 +23,19 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as! GameControllerCollectionViewCell
-        cell.CardView = model?.cardCollection[indexPath.item]
-//        cell.CardView.frame = cell.contentView.frame
-//        print(cell.CardView.getID())
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as? GameControllerCollectionViewCell else {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath)
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = model?.cardCollection[indexPath.item] else {
-            return
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as! GameControllerCollectionViewCell
+        
+        if !cell.CardView.frontIsShowing {
+            cell.CardView.flip()
+            model?.updateGameState(with: indexPath.item)
         }
-        cell.flip()
-        print(cell)
-        model?.updateGameState(with: indexPath.item)
     }
     
 
@@ -44,13 +43,7 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
         card1.flip()
         card2.flip()
     }
-//    
-//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as! GameControllerCollectionViewCell
-//        cell.CardView = model?.cardCollection[indexPath.item]
-//
-//        cell.CardView.frame = cell.contentView.frame
-//    }
+
     
     //Dirty hack just to get all cells on screen for now
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
