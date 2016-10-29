@@ -5,7 +5,7 @@ import UIKit
 
 protocol CardModelDelegate: class {
     func setGameMode(with mode: Int)
-    func flipCardsBack(card1: Card, card2: Card)
+    func flipCardsBack(card1: GameControllerCollectionViewCell, card2: GameControllerCollectionViewCell)
 }
 
 class CardModel {
@@ -16,7 +16,7 @@ class CardModel {
     private let BACKTAG = 100
     private let FRONTTAG = 200
     private var useTimer: Bool
-    private var cardToBeMatched = Card()
+    private var cardToBeMatched: GameControllerCollectionViewCell!
     private var needsMatching = false
     
     //MARK: Model init
@@ -31,19 +31,20 @@ class CardModel {
     }
 
     //MARK: Check game state after card flip
-    func updateGameState(with index: Int) {
+    func updateGameState(with cell: GameControllerCollectionViewCell) {
         if needsMatching {
             needsMatching = false
-            if cardToBeMatched.getID() == cardCollection[index].getID() {
+            if cardToBeMatched.CardView.getID() == cell.CardView.getID() {
+                delegate?.flipCardsBack(card1: cardToBeMatched, card2: cell)
                 print("MATCH!!!")
             }
             else {
-                delegate?.flipCardsBack(card1: cardToBeMatched, card2: cardCollection[index])
+                delegate?.flipCardsBack(card1: cardToBeMatched, card2: cell)
                 print("Bad choice brah :(")
             }
         }
         else {
-            cardToBeMatched = cardCollection[index]
+            cardToBeMatched = cell
             needsMatching = true
         }
     }
