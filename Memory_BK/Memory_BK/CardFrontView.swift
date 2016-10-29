@@ -16,7 +16,7 @@ class CardFrontView: UIView {
         
         emojiLabel.textAlignment = .center
         emojiLabel.font = UIFont.systemFont(ofSize: 48)
-        emojiLabel.text = "💩" // default text for noticing if a view didn't load the card data right
+        emojiLabel.text = "💩" 
     }
     
     required init?(coder aDecoder: NSCoder) {

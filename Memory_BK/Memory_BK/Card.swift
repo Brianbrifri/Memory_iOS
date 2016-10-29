@@ -2,18 +2,22 @@ import UIKit
 
 class Card: UIView {
     
-    private var ID: Int = -1
+    var ID: Int = -1
     
     var frontIsShowing: Bool = false
     var notMatched: Bool = true
     private let BACKTAG = 100
     private let FRONTTAG = 200
-    var frontView = UIView()
-    var backView = UIView()
+    var frontView = CardFrontView(frame: CGRect.zero)
+    var backView = CardBackView(frame: CGRect.zero)
     
-  
+    override func draw(_ rect: CGRect) {
+        addSubview(frontView)
+        addSubview(backView)
+    }
+    
     override func layoutSubviews() {
-        backgroundColor = UIColor(red: 1.0, green: 0.95, blue: 0.95, alpha: 1.0)
+        backgroundColor = UIColor.darkGray
         super.layoutSubviews()
 
     }
@@ -24,18 +28,18 @@ class Card: UIView {
         setupView(with: view)
 
         //MARK: Setup frontView and backView vars based on tags of subviews added
-        switch view.tag {
-        case BACKTAG:
-            backView = view
-            backView.backgroundColor = UIColor.green
-            print("Found view with BACKTAG")
-        case FRONTTAG:
-            frontView = view
-            frontView.backgroundColor = UIColor.red
-            print("Found view with FRONTTAG")
-        default:
-            print("Added view with incorrect tag")
-        }
+//        switch view.tag {
+//        case BACKTAG:
+//            backView = view as! CardBackView
+//            backView.backgroundColor = UIColor.darkGray
+//            print("Found view with BACKTAG")
+//        case FRONTTAG:
+//            frontView = view as! CardFrontView
+//            frontView.backgroundColor = UIColor.red
+//            print("Found view with FRONTTAG")
+//        default:
+//            print("Added view with incorrect tag")
+//        }
     }
     
     //MARK: Sets the subview constraints to itself
@@ -66,14 +70,14 @@ class Card: UIView {
             self.frontView.isHidden = !self.frontIsShowing
             self.backView.isHidden = self.frontIsShowing
             self.frontIsShowing = !self.frontIsShowing
-            
-            print("View \(self.ID) flipped")
+            print(" ")
             print("frontView showing: \(self.frontView.isHidden)")
             print("backView showing: \(self.backView.isHidden)")
 
             }) { (true) in
             //more stuff
 //            print("On Completion")
+        
         }
     }
 }

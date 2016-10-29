@@ -32,6 +32,7 @@ class CardModel {
 
     //MARK: Check game state after card flip
     func updateGameState(with cell: GameControllerCollectionViewCell) {
+        print("updateGameState called with cell.CardView.ID: \(cell.CardView.getID())")
         if needsMatching {
             needsMatching = false
             if cardToBeMatched.CardView.getID() == cell.CardView.getID() {
@@ -70,6 +71,7 @@ class CardModel {
             index = Int(arc4random_uniform(UInt32(cardList.count)))
             cardList.insert(matchingCard, at: index)
             print("Matching Card added at index \(index)")
+            
         }
 
         return cardList

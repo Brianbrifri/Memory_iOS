@@ -26,21 +26,20 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as? GameControllerCollectionViewCell else {
             return collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath)
         }
-        
+        cell.CardView = model?.cardCollection[indexPath.item]
         let backView = CardBackView(frame: CGRect.zero)
         let frontView = CardFrontView(frame: CGRect.zero)
         backView.tag = 100
         frontView.tag = 200
         frontView.isHidden = true
-        cell.CardView.addSubview(backView)
-        cell.CardView.addSubview(frontView)
+//        cell.CardView.addSubview(backView)
+//        cell.CardView.addSubview(frontView)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as! GameControllerCollectionViewCell
         
-//        cell.CardView.flip()
         if !cell.CardView.frontIsShowing {
             cell.CardView.flip()
             model?.updateGameState(with: cell)
