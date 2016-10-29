@@ -11,17 +11,7 @@ class Card: UIView {
     var frontView = UIView()
     var backView = UIView()
     
-    override init(frame:CGRect) {
-        super.init(frame: frame)
-        addSubview(frontView)
-        addSubview(backView)
-        frontView.isHidden = true
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
+  
     override func layoutSubviews() {
         backgroundColor = UIColor(red: 1.0, green: 0.95, blue: 0.95, alpha: 1.0)
         super.layoutSubviews()
@@ -83,7 +73,7 @@ class Card: UIView {
 
             }) { (true) in
             //more stuff
-            print("On Completion")
+//            print("On Completion")
         }
     }
 }

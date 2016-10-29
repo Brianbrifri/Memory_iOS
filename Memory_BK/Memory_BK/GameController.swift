@@ -34,6 +34,7 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
         frontView.isHidden = true
         cell.CardView.addSubview(backView)
         cell.CardView.addSubview(frontView)
+        cell.CardView.setID(ID: (model?.cardCollection[indexPath.item].getID())!)
         return cell
     }
     

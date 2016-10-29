@@ -31,22 +31,22 @@ class CardModel {
     }
 
     //MARK: Check game state after card flip
-//    func updateGameState(with index: Int) {
-//        if needsMatching {
-//            needsMatching = false
-//            if cardToBeMatched.getID() == cardCollection[index].getID() {
-//                print("MATCH!!!")
-//            }
-//            else {
-//                delegate?.flipCardsBack(card1: cardToBeMatched, card2: cardCollection[index])
-//                print("Bad choice brah :(")
-//            }
-//        }
-//        else {
-//            cardToBeMatched = cardCollection[index]
-//            needsMatching = true
-//        }
-//    }
+    func updateGameState(with index: Int) {
+        if needsMatching {
+            needsMatching = false
+            if cardToBeMatched.getID() == cardCollection[index].getID() {
+                print("MATCH!!!")
+            }
+            else {
+                delegate?.flipCardsBack(card1: cardToBeMatched, card2: cardCollection[index])
+                print("Bad choice brah :(")
+            }
+        }
+        else {
+            cardToBeMatched = cardCollection[index]
+            needsMatching = true
+        }
+    }
     
     //MARK: Card and CardList initilizer function
     private func initializeCards(grid: Int) -> [Card] {
