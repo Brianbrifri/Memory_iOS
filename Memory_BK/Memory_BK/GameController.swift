@@ -34,17 +34,10 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
 ////       2. I can have the Card add its own subviews on draw instead of here
 ////       then just return the cell that has view of CardView which will add the subviews
 ////       on its own
-        
-        
-//        let backView = CardBackView(frame: CGRect.zero)
-//        let frontView = CardFrontView(frame: CGRect.zero)
-//        backView.tag = 100
-//        frontView.tag = 200
-//        frontView.isHidden = true
-//        cell.CardView.addSubview(backView)
-//        cell.CardView.addSubview(frontView)
-        
+       
+       
         cell.CardView = model?.cardCollection[indexPath.item]
+        print("Card emoji: \(cell.CardView.frontView.emojiLabel.text)")
         return cell
     }
     

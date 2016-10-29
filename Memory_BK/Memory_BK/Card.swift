@@ -19,6 +19,7 @@ class Card: UIView {
     override func draw(_ rect: CGRect) {
         addSubview(frontView)
         addSubview(backView)
+        frontView.isHidden = true
     }
     
     override func layoutSubviews() {
@@ -28,26 +29,9 @@ class Card: UIView {
     }
     
     //MARK: Adds the subview then calls setupView
-    //If you uncomment the switch function, you should add
-    //the subviews in the GamController then the switch will
-    //set the local variables to the correct view added
     override func addSubview(_ view: UIView) {
         super.addSubview(view)
         setupView(with: view)
-
-        //MARK: Setup frontView and backView vars based on tags of subviews added
-//        switch view.tag {
-//        case BACKTAG:
-//            backView = view as! CardBackView
-//            backView.backgroundColor = UIColor.darkGray
-//            print("Found view with BACKTAG")
-//        case FRONTTAG:
-//            frontView = view as! CardFrontView
-//            frontView.backgroundColor = UIColor.red
-//            print("Found view with FRONTTAG")
-//        default:
-//            print("Added view with incorrect tag")
-//        }
     }
     
     //MARK: Sets the subview constraints to itself

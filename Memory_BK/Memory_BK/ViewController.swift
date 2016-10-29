@@ -6,6 +6,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var StartButton: UIButton!
     @IBOutlet weak var GameModeSelector: UISegmentedControl!
     @IBOutlet weak var TimerSwitch: UISwitch!
+    @IBOutlet weak var extraText: UITextField!
     
     //MARK: GameMode Enum
     enum GameMode: Int {
@@ -15,12 +16,12 @@ class ViewController: UIViewController {
     }
 
     
-    private var selectedMode: Int = 0
+    private var selectedMode: Int = GameMode.FOURxFOUR.rawValue
     private var useTimer: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectedMode = GameMode.TWOxTWO.rawValue
+        selectedMode = GameMode.FOURxFOUR.rawValue
     }
     
     //MARK: Game Mode Selector Function
@@ -33,7 +34,7 @@ class ViewController: UIViewController {
             case 2:
                 selectedMode = GameMode.SIXxSIX.rawValue
             default:
-                selectedMode = GameMode.TWOxTWO.rawValue
+                selectedMode = GameMode.FOURxFOUR.rawValue
         }
         print("GameModeSelected switched to value \(selectedMode)")
     }
@@ -41,8 +42,10 @@ class ViewController: UIViewController {
     //MARK: Timer Toggle Function
     @IBAction func TimerToggled(_ sender: UISwitch) {
         if TimerSwitch.isOn {
+            extraText.text = "😑😑😑😑"
             useTimer = true
         } else {
+            extraText.text = ""
             useTimer = false
         }
         print("Timer toggled to state \(useTimer)")

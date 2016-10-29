@@ -14,6 +14,7 @@ class CardModel {
     
     weak var delegate: CardModelDelegate?
     var cardCollection: [Card] = []
+    var emojiList: [String] = ["😈", "☠️", "👺", "🤖", "👹", "💀", "👽", "👾", "😱", "😾", "🕵🏿", "🎩", "🐀", "🐔", "🎱", "📸", "🏴", "☪"]
     private let TOTAL_LAYERS: UInt32 = 18
     private let BACKTAG = 100
     private let FRONTTAG = 200
@@ -38,7 +39,7 @@ class CardModel {
     //Takes in a cell and checks its id to the one that is already flipped
     //for some reason, it is always -1 even if I set it explicitly
     func updateGameState(with card: Card) {
-        print("updateGameState called with cell.CardView.ID: \(card.getID())")
+        print("updateGameState called with CardView.ID: \(card.getID())")
         if needsMatching {
             needsMatching = false
             if cardToBeMatched.getID() == card.getID() {
@@ -76,16 +77,21 @@ class CardModel {
         
         //MARK: Create all the Cards
         for i in 1...grid {
-           
-            //MARK: Set ID and add to list
+            
+            index = Int(arc4random_uniform(UInt32(emojiList.count)))
             let card = Card()
+            let matchingCard = Card()
+            card.frontView.emojiLabel.text = emojiList[index]
+            matchingCard.frontView.emojiLabel.text = emojiList[index]
+            emojiList.remove(at: index)
+
+            //MARK: Set ID and add to list
             card.setID(ID: i)
             index = Int(arc4random_uniform(UInt32(cardList.count)))
             cardList.insert(card, at: index)
             print("Card added at index \(index)")
 
             //MARK: Duplicate the card and add to cardList
-            let matchingCard = Card()
             matchingCard.setID(ID: i)
             index = Int(arc4random_uniform(UInt32(cardList.count)))
             cardList.insert(matchingCard, at: index)
