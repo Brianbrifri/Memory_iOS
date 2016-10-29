@@ -48,20 +48,21 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
     //There is something funky with referencing elements of the cell > CardView > variables
     //It should not let me flip the same card twice in a row but it does
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as! GameControllerCollectionViewCell
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as! GameControllerCollectionViewCell
+        let cell = model?.cardCollection[indexPath.item]
         
-        if !cell.CardView.frontIsShowing {
-            cell.CardView.flip()
-            model?.updateGameState(with: cell)
+        if !(cell?.frontIsShowing)! {
+            cell?.flip()
+            model?.updateGameState(with: cell!)
         }
     }
     
 
     //protocol conforming method to flip calls back inside the delay function
-    func flipCardsBack(card1: GameControllerCollectionViewCell, card2: GameControllerCollectionViewCell) {
+    func flipCardsBack(card1: Card, card2: Card) {
         delay(1.5, closure: {
-            card1.CardView.flip()
-            card2.CardView.flip()
+            card1.flip()
+            card2.flip()
         })
     }
     

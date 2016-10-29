@@ -5,7 +5,7 @@ import UIKit
 
 protocol CardModelDelegate: class {
     func setGameMode(with mode: Int)
-    func flipCardsBack(card1: GameControllerCollectionViewCell, card2: GameControllerCollectionViewCell)
+    func flipCardsBack(card1: Card, card2: Card)
 }
 
 class CardModel {
@@ -16,7 +16,7 @@ class CardModel {
     private let BACKTAG = 100
     private let FRONTTAG = 200
     private var useTimer: Bool
-    private var cardToBeMatched: GameControllerCollectionViewCell!
+    private var cardToBeMatched: Card!
     private var needsMatching = false
     
     //MARK: Model init
@@ -33,26 +33,26 @@ class CardModel {
     //MARK: Check game state after card flip
     //Takes in a cell and checks its id to the one that is already flipped
     //for some reason, it is always -1 even if I set it explicitly
-    func updateGameState(with cell: GameControllerCollectionViewCell) {
-        print("updateGameState called with cell.CardView.ID: \(cell.CardView.getID())")
+    func updateGameState(with card: Card) {
+        print("updateGameState called with cell.CardView.ID: \(card.getID())")
         if needsMatching {
             needsMatching = false
-            if cardToBeMatched.CardView.getID() == cell.CardView.getID() {
+            if cardToBeMatched.getID() == card.getID() {
                 //Just calling this function here because all the cards are matching
                 //due to them all having -1 for the ID for some reason
-                delegate?.flipCardsBack(card1: cardToBeMatched, card2: cell)
+                delegate?.flipCardsBack(card1: cardToBeMatched, card2: card)
                 print("MATCH!!!")
             }
             else {
                 //They don't match so flip them back
-                delegate?.flipCardsBack(card1: cardToBeMatched, card2: cell)
+                delegate?.flipCardsBack(card1: cardToBeMatched, card2: card)
                 print("Bad choice brah :(")
             }
         }
         else {
             //There is no card waiting to be matched so
             //set the variable to the one to be matched
-            cardToBeMatched = cell
+            cardToBeMatched = card
             needsMatching = true
         }
     }

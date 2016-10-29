@@ -4,7 +4,10 @@ import UIKit
 class GameControllerCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var CardView: Card!
-    var ID = -1
+    
+    //Mark:- Not doing anything in here anymore
+    
+    
 //    let backView = CardBackView(frame: CGRect.zero)
 //    let frontView = CardFrontView(frame: CGRect.zero)
 //    private let BACKTAG = 100
