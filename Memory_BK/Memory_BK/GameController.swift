@@ -26,6 +26,14 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as? GameControllerCollectionViewCell else {
             return collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath)
         }
+        
+        //I can do one of two things to get the views to appear
+        //1. I can add the sub views to the CardView here and have the
+        //CardView parse them by tag and then set its view variables
+        //to those views I added then try to flip on those.
+        //2. I can have the Card add its own subviews on draw instead of here
+        //then just return the cell that has view of CardView which will add the subviews
+        //on its own
         cell.CardView = model?.cardCollection[indexPath.item]
         let backView = CardBackView(frame: CGRect.zero)
         let frontView = CardFrontView(frame: CGRect.zero)
@@ -37,6 +45,8 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
         return cell
     }
     
+    //There is something funky with referencing elements of the cell > CardView > variables
+    //It should not let me flip the same card twice in a row but it does
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as! GameControllerCollectionViewCell
         
@@ -47,6 +57,7 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
 
+    //protocol conforming method to flip calls back inside the delay function
     func flipCardsBack(card1: GameControllerCollectionViewCell, card2: GameControllerCollectionViewCell) {
         delay(1.5, closure: {
             card1.CardView.flip()
@@ -54,6 +65,7 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
         })
     }
     
+    //Delay function to flip card back
     func delay(_ delay:Double, closure:@escaping ()->()) {
         let when = DispatchTime.now() + delay
         DispatchQueue.main.asyncAfter(deadline: when, execute: closure)
