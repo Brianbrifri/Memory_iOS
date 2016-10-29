@@ -9,16 +9,16 @@ class GameControllerCollectionViewCell: UICollectionViewCell {
     private let BACKTAG = 100
     private let FRONTTAG = 200
     
-    override func awakeFromNib() {
-        print("got nibbed in the ass")
-        super.awakeFromNib()
-        backView.tag = BACKTAG
-        frontView.tag = FRONTTAG
-        CardView.addSubview(backView)
-        CardView.addSubview(frontView)
-        frontView.isHidden = true
-    }
-    
+//    override func awakeFromNib() {
+//        print("got nibbed in the ass")
+//        super.awakeFromNib()
+//        backView.tag = BACKTAG
+//        frontView.tag = FRONTTAG
+//        CardView.addSubview(backView)
+//        CardView.addSubview(frontView)
+//        frontView.isHidden = true
+//    }
+//    
 
     func flip() {
         UIView.transition(with: CardView, duration: 0.5, options: .transitionFlipFromLeft, animations: {

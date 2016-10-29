@@ -26,24 +26,40 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as? GameControllerCollectionViewCell else {
             return collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath)
         }
+        
+        let backView = CardBackView(frame: CGRect.zero)
+        let frontView = CardFrontView(frame: CGRect.zero)
+        backView.tag = 100
+        frontView.tag = 200
+        frontView.isHidden = true
+        cell.CardView.addSubview(backView)
+        cell.CardView.addSubview(frontView)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as! GameControllerCollectionViewCell
         
-        if !cell.CardView.frontIsShowing {
-            cell.CardView.flip()
-            model?.updateGameState(with: indexPath.item)
-        }
+        cell.CardView.flip()
+//        if !cell.CardView.frontIsShowing {
+//            cell.CardView.flip()
+//            model?.updateGameState(with: indexPath.item)
+//        }
     }
     
 
     func flipCardsBack(card1: Card, card2: Card) {
-        card1.flip()
-        card2.flip()
+        delay(1.5, closure: {
+            card1.flip()
+            card2.flip()
+        })
     }
-
+    
+    func delay(_ delay:Double, closure:@escaping ()->()) {
+        let when = DispatchTime.now() + delay
+        DispatchQueue.main.asyncAfter(deadline: when, execute: closure)
+    }
+ 
     
     //Dirty hack just to get all cells on screen for now
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
