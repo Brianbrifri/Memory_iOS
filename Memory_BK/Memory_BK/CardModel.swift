@@ -6,6 +6,8 @@ import UIKit
 protocol CardModelDelegate: class {
     func setGameMode(with mode: Int)
     func flipCardsBack(card1: Card, card2: Card)
+    func cardsMatched(card1: Card, card2: Card)
+    func wonGame()
 }
 
 class CardModel {
@@ -18,6 +20,7 @@ class CardModel {
     private var useTimer: Bool
     private var cardToBeMatched: Card!
     private var needsMatching = false
+    private var remainingCards = -1
     
     //MARK: Model init
     //with the size the user chooses
@@ -27,6 +30,7 @@ class CardModel {
 
         //Initialize array of cards
         cardCollection = initializeCards(grid: mode)
+        remainingCards = mode + mode
         self.delegate?.setGameMode(with: mode)
     }
 
@@ -40,8 +44,13 @@ class CardModel {
             if cardToBeMatched.getID() == card.getID() {
                 //Just calling this function here because all the cards are matching
                 //due to them all having -1 for the ID for some reason
-                delegate?.flipCardsBack(card1: cardToBeMatched, card2: card)
+                delegate?.cardsMatched(card1: cardToBeMatched, card2: card)
+//                delegate?.flipCardsBack(card1: cardToBeMatched, card2: card)
+                remainingCards -= 2
                 print("MATCH!!!")
+                if remainingCards == 0 {
+                    delegate?.wonGame()
+                }
             }
             else {
                 //They don't match so flip them back

@@ -27,26 +27,28 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
             return collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath)
         }
         
-        //I can do one of two things to get the views to appear
-        //1. I can add the sub views to the CardView here and have the
-        //CardView parse them by tag and then set its view variables
-        //to those views I added then try to flip on those.
-        //2. I can have the Card add its own subviews on draw instead of here
-        //then just return the cell that has view of CardView which will add the subviews
-        //on its own
-        cell.CardView = model?.cardCollection[indexPath.item]
-        let backView = CardBackView(frame: CGRect.zero)
-        let frontView = CardFrontView(frame: CGRect.zero)
-        backView.tag = 100
-        frontView.tag = 200
-        frontView.isHidden = true
+////       I can do one of two things to get the views to appear
+////       1. I can add the sub views to the CardView here and have the
+////       CardView parse them by tag and then set its view variables
+////       to those views I added then try to flip on those.
+////       2. I can have the Card add its own subviews on draw instead of here
+////       then just return the cell that has view of CardView which will add the subviews
+////       on its own
+        
+        
+//        let backView = CardBackView(frame: CGRect.zero)
+//        let frontView = CardFrontView(frame: CGRect.zero)
+//        backView.tag = 100
+//        frontView.tag = 200
+//        frontView.isHidden = true
 //        cell.CardView.addSubview(backView)
 //        cell.CardView.addSubview(frontView)
+        
+        cell.CardView = model?.cardCollection[indexPath.item]
         return cell
     }
     
-    //There is something funky with referencing elements of the cell > CardView > variables
-    //It should not let me flip the same card twice in a row but it does
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as! GameControllerCollectionViewCell
         let cell = model?.cardCollection[indexPath.item]
@@ -64,6 +66,18 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
             card1.flip()
             card2.flip()
         })
+    }
+    
+    func cardsMatched(card1: Card, card2: Card) {
+        card1.removeFromSuperview()
+        card2.removeFromSuperview()
+    }
+    
+    func wonGame() {
+        let alert = UIAlertController(title: "Winner!", message: "Process of elimination...Elementary my dear David. Play Again?", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in self.navigationController?.popViewController(animated: true) }))
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     //Delay function to flip card back
