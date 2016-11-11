@@ -36,9 +36,9 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
 ////       on its own
        
        
-        cell.CardView = model?.cardCollection[indexPath.item]
-        cell.CardView.frontView.emojiLabel.text = model?.activeEmoji[indexPath.item]
-        print("Card emoji: \(cell.CardView.frontView.emojiLabel.text)")
+        //cell.CardView = model?.cardCollection[indexPath.item]
+        cell.frontView.emojiLabel.text = model?.activeEmoji[indexPath.item]
+        print("Card emoji: \(cell.frontView.emojiLabel.text)")
         return cell
     }
     
@@ -46,7 +46,7 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as! GameControllerCollectionViewCell
 //        let cell = model?.cardCollection[indexPath.item]
-        cell.CardView.flip()
+        cell.flip()
 //        if !(cell.CardView.frontIsShowing) {
 //            cell.CardView.flip()
 //            model?.updateGameState(with: cell.CardView)
@@ -57,8 +57,8 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
     //protocol conforming method to flip calls back inside the delay function
     func flipCardsBack(card1: Card, card2: Card) {
         delay(1.5, closure: {
-            card1.flip()
-            card2.flip()
+//            card1.flip()
+//            card2.flip()
         })
     }
     

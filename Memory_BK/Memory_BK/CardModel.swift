@@ -83,8 +83,8 @@ class CardModel {
             emojiIndex = Int(arc4random_uniform(UInt32(emojiList.count)))
             let card = Card()
             let matchingCard = Card()
-            card.frontView.emojiLabel.text = emojiList[emojiIndex]
-            matchingCard.frontView.emojiLabel.text = emojiList[emojiIndex]
+//            card.frontView.emojiLabel.text = emojiList[emojiIndex]
+ //           matchingCard.frontView.emojiLabel.text = emojiList[emojiIndex]
 
             //MARK: Set ID and add to list
             card.setID(ID: i)
