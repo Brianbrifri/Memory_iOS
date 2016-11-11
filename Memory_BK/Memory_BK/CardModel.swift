@@ -5,23 +5,19 @@ import UIKit
 
 protocol CardModelDelegate: class {
     func setGameMode(with mode: Int)
-    func flipCardsBack(card1: Card, card2: Card)
-    func cardsMatched(card1: Card, card2: Card)
-    func wonGame()
+    func flipCardsBack()
+    func cardsMatched()
 }
 
 class CardModel {
     
     weak var delegate: CardModelDelegate?
-    var cardCollection: [Card] = []
     var emojiList: [String] = ["😈", "☠️", "👺", "🤖", "👹", "💀", "👽", "👾", "😱", "😾", "🕵🏿", "🎩", "🐀", "🐔", "🎱", "📸", "🏴", "☪"]
     var activeEmoji: [String] = []
-    private let TOTAL_LAYERS: UInt32 = 18
-    private let BACKTAG = 100
-    private let FRONTTAG = 200
     private var useTimer: Bool
-    private var cardToBeMatched: Card!
-    private var needsMatching = false
+    private var cardToBeMatched: String!
+    var needsMatching = false
+    var wonGame = false
     private var remainingCards = -1
     
     //MARK: Model init
@@ -39,24 +35,20 @@ class CardModel {
     //MARK: Check game state after card flip
     //Takes in a cell and checks its id to the one that is already flipped
     //for some reason, it is always -1 even if I set it explicitly
-    func updateGameState(with card: Card) {
-        print("updateGameState called with CardView.ID: \(card.getID())")
+    func updateGameState(with card: String) {
         if needsMatching {
             needsMatching = false
-            if cardToBeMatched.getID() == card.getID() {
-                //Just calling this function here because all the cards are matching
-                //due to them all having -1 for the ID for some reason
-                delegate?.cardsMatched(card1: cardToBeMatched, card2: card)
-//                delegate?.flipCardsBack(card1: cardToBeMatched, card2: card)
+            if cardToBeMatched == card {
+                delegate?.cardsMatched()
                 remainingCards -= 2
                 print("MATCH!!!")
                 if remainingCards == 0 {
-                    delegate?.wonGame()
+                    wonGame = true
                 }
             }
             else {
                 //They don't match so flip them back
-                delegate?.flipCardsBack(card1: cardToBeMatched, card2: card)
+                delegate?.flipCardsBack()
                 print("Bad choice brah :(")
             }
         }
@@ -68,43 +60,28 @@ class CardModel {
         }
     }
     
-    //MARK: Card and CardList initilizer function
-    //This is probably out of date? I am setting the 
-    //cell.CardView to one of these cards and the display works
-    //not sure if still need this
+    //MARK: activeEmoji list initializer
     private func initializeCards(grid: Int) {
         //var cardList: [Card] = []
         var index: Int
         var emojiIndex: Int
         
         //MARK: Create all the Cards
-        for i in 1...grid {
+        for _ in 1...grid {
             
             emojiIndex = Int(arc4random_uniform(UInt32(emojiList.count)))
-            let card = Card()
-            let matchingCard = Card()
-//            card.frontView.emojiLabel.text = emojiList[emojiIndex]
- //           matchingCard.frontView.emojiLabel.text = emojiList[emojiIndex]
 
-            //MARK: Set ID and add to list
-            card.setID(ID: i)
             index = Int(arc4random_uniform(UInt32(activeEmoji.count)))
             activeEmoji.insert(emojiList[emojiIndex], at: index)
-            cardCollection.insert(card, at: index)
             print("Card added at index \(index)")
 
-            //MARK: Duplicate the card and add to cardList
-            matchingCard.setID(ID: i)
             index = Int(arc4random_uniform(UInt32(activeEmoji.count)))
             activeEmoji.insert(emojiList[emojiIndex], at: index)
-            cardCollection.insert(matchingCard, at: index)
             print("Matching Card added at index \(index)")
             
             emojiList.remove(at: emojiIndex)
             
         }
-
-        //return cardList
     }
 }
 
