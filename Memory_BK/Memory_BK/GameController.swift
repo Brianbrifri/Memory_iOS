@@ -35,10 +35,10 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
 ////       then just return the cell that has view of CardView which will add the subviews
 ////       on its own
        
-       
+        cell.setUpViews()
         //cell.CardView = model?.cardCollection[indexPath.item]
         cell.frontView.emojiLabel.text = model?.activeEmoji[indexPath.item]
-        print("Card emoji: \(cell.frontView.emojiLabel.text)")
+        print("Card emoji: \(cell.frontView.emojiLabel.text)!")
         return cell
     }
     
@@ -46,7 +46,14 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as! GameControllerCollectionViewCell
 //        let cell = model?.cardCollection[indexPath.item]
-        cell.flip()
+        //cell.setUpViews()
+        
+        UIView.transition(with: cell.contentView, duration: 1, options: .transitionFlipFromLeft, animations: {
+            cell.frontView.isHidden = cell.frontShowing
+            cell.backView.isHidden = !cell.frontShowing
+            cell.frontShowing = !cell.frontShowing
+        }, completion: nil)
+        //cell.flip()
 //        if !(cell.CardView.frontIsShowing) {
 //            cell.CardView.flip()
 //            model?.updateGameState(with: cell.CardView)
