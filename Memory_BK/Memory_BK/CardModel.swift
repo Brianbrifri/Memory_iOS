@@ -15,6 +15,7 @@ class CardModel {
     weak var delegate: CardModelDelegate?
     var cardCollection: [Card] = []
     var emojiList: [String] = ["😈", "☠️", "👺", "🤖", "👹", "💀", "👽", "👾", "😱", "😾", "🕵🏿", "🎩", "🐀", "🐔", "🎱", "📸", "🏴", "☪"]
+    var activeEmoji: [String] = []
     private let TOTAL_LAYERS: UInt32 = 18
     private let BACKTAG = 100
     private let FRONTTAG = 200
@@ -30,7 +31,7 @@ class CardModel {
         useTimer = timer
 
         //Initialize array of cards
-        cardCollection = initializeCards(grid: mode)
+        initializeCards(grid: mode)
         remainingCards = mode + mode
         self.delegate?.setGameMode(with: mode)
     }
@@ -71,35 +72,39 @@ class CardModel {
     //This is probably out of date? I am setting the 
     //cell.CardView to one of these cards and the display works
     //not sure if still need this
-    private func initializeCards(grid: Int) -> [Card] {
-        var cardList: [Card] = []
+    private func initializeCards(grid: Int) {
+        //var cardList: [Card] = []
         var index: Int
+        var emojiIndex: Int
         
         //MARK: Create all the Cards
         for i in 1...grid {
             
-            index = Int(arc4random_uniform(UInt32(emojiList.count)))
+            emojiIndex = Int(arc4random_uniform(UInt32(emojiList.count)))
             let card = Card()
             let matchingCard = Card()
-            card.frontView.emojiLabel.text = emojiList[index]
-            matchingCard.frontView.emojiLabel.text = emojiList[index]
-            emojiList.remove(at: index)
+            card.frontView.emojiLabel.text = emojiList[emojiIndex]
+            matchingCard.frontView.emojiLabel.text = emojiList[emojiIndex]
 
             //MARK: Set ID and add to list
             card.setID(ID: i)
-            index = Int(arc4random_uniform(UInt32(cardList.count)))
-            cardList.insert(card, at: index)
+            index = Int(arc4random_uniform(UInt32(activeEmoji.count)))
+            activeEmoji.insert(emojiList[emojiIndex], at: index)
+            cardCollection.insert(card, at: index)
             print("Card added at index \(index)")
 
             //MARK: Duplicate the card and add to cardList
             matchingCard.setID(ID: i)
-            index = Int(arc4random_uniform(UInt32(cardList.count)))
-            cardList.insert(matchingCard, at: index)
+            index = Int(arc4random_uniform(UInt32(activeEmoji.count)))
+            activeEmoji.insert(emojiList[emojiIndex], at: index)
+            cardCollection.insert(matchingCard, at: index)
             print("Matching Card added at index \(index)")
+            
+            emojiList.remove(at: emojiIndex)
             
         }
 
-        return cardList
+        //return cardList
     }
 }
 

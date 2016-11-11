@@ -37,19 +37,20 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
        
        
         cell.CardView = model?.cardCollection[indexPath.item]
+        cell.CardView.frontView.emojiLabel.text = model?.activeEmoji[indexPath.item]
         print("Card emoji: \(cell.CardView.frontView.emojiLabel.text)")
         return cell
     }
     
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as! GameControllerCollectionViewCell
-        let cell = model?.cardCollection[indexPath.item]
-        
-        if !(cell?.frontIsShowing)! {
-            cell?.flip()
-            model?.updateGameState(with: cell!)
-        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as! GameControllerCollectionViewCell
+//        let cell = model?.cardCollection[indexPath.item]
+        cell.CardView.flip()
+//        if !(cell.CardView.frontIsShowing) {
+//            cell.CardView.flip()
+//            model?.updateGameState(with: cell.CardView)
+//        }
     }
     
 
