@@ -18,17 +18,19 @@ class CardModel {
     private var cardToBeMatched: String!
     var needsMatching = false
     var wonGame = false
-    private var remainingCards = -1
+    var mode: Int
+    private var remainingCards = 0
     
     //MARK: Model init
     //with the size the user chooses
     init(delegate: CardModelDelegate, mode: Int, timer: Bool) {
+        self.mode = mode
+        remainingCards = mode + mode
         self.delegate = delegate
         useTimer = timer
 
         //Initialize array of cards
         initializeCards(grid: mode)
-        remainingCards = mode + mode
         self.delegate?.setGameMode(with: mode)
     }
 
@@ -60,16 +62,26 @@ class CardModel {
         }
     }
     
+    func reset() {
+        wonGame = false
+        remainingCards = mode + mode
+        initializeCards(grid: mode)
+    }
+    
     //MARK: activeEmoji list initializer
     private func initializeCards(grid: Int) {
-        //var cardList: [Card] = []
         var index: Int
         var emojiIndex: Int
+        var chosen: [Int] = []
+        activeEmoji = []
         
         //MARK: Create all the Cards
         for _ in 1...grid {
+            repeat {
+                emojiIndex = Int(arc4random_uniform(UInt32(emojiList.count)))
+            } while chosen.contains(emojiIndex)
             
-            emojiIndex = Int(arc4random_uniform(UInt32(emojiList.count)))
+            chosen.append(emojiIndex)
 
             index = Int(arc4random_uniform(UInt32(activeEmoji.count)))
             activeEmoji.insert(emojiList[emojiIndex], at: index)
@@ -78,9 +90,6 @@ class CardModel {
             index = Int(arc4random_uniform(UInt32(activeEmoji.count)))
             activeEmoji.insert(emojiList[emojiIndex], at: index)
             print("Matching Card added at index \(index)")
-            
-            emojiList.remove(at: emojiIndex)
-            
         }
     }
 }

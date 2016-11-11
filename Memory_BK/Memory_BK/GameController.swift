@@ -54,10 +54,9 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
         }
     }
     
-
     //protocol conforming method to flip calls back inside the delay function
     func flipCardsBack() {
-        delay(1.5, closure: {
+        delay(1, closure: {
             self.cell1?.flip()
             self.cell2?.flip()
             self.currentlyMatching = false
@@ -68,6 +67,8 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
         delay(1.5, closure: {
             self.cell1?.removeFromSuperview()
             self.cell2?.removeFromSuperview()
+            self.cell1?.flip()
+            self.cell2?.flip()
             self.currentlyMatching = false
             if (self.model?.wonGame)! {
                 self.wonGame()
@@ -76,20 +77,27 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func wonGame() {
-        let alert = UIAlertController(title: "Winner!", message: "Process of elimination...Elementary my dear David. Play Again?", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in  }))
-        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        alert(message: "Process of elimination...Elementary my dear David. Play Again?", title: "Winner!!")
+        reset()
     }
     
-    //Delay function to flip card back
+    func reset() {
+        model?.reset()
+        var iter = 0
+        for cell in cardCollectionView.visibleCells as! [GameControllerCollectionViewCell] {
+            cell.frontView.emojiLabel.text = model?.activeEmoji[iter]
+            iter += 1
+        }
+        cardCollectionView.reloadData()
+    }
+    
+    //Generic delay function to delay anything
     func delay(_ delay:Double, closure:@escaping ()->()) {
         let when = DispatchTime.now() + delay
         DispatchQueue.main.asyncAfter(deadline: when, execute: closure)
     }
  
     
-    //Dirty hack just to get all cells on screen for now
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenSize: CGRect = UIScreen.main.bounds
         let screenWidth = screenSize.width
@@ -116,9 +124,30 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
         return CGSize(width: cellWidth,height: cellHeight)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+    }
+    
     //Protocol function to set gameMode
     func setGameMode(with mode: Int) {
         gameMode = mode
     }
 
+
+
+}
+
+extension UIViewController {
+    
+    func alert(message: String, title: String = "") {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "Suuure", style: .default, handler: nil)
+        alertController.addAction(OKAction)
+        let CancelAction = UIAlertAction(title: "Nope", style: .cancel, handler: {(action: UIAlertAction!) in
+            let _ = self.navigationController?.popViewController(animated: true)
+        })
+        alertController.addAction(CancelAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
 }
