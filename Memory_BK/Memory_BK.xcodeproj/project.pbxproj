@@ -153,8 +153,8 @@
 		84B8B1381DB5E00200FEE9B2 /* Card Views */ = {
 			isa = PBXGroup;
 			children = (
-				84B8B1391DB5E03D00FEE9B2 /* CardBackView.swift */,
 				84B8B1861DB5F2F100FEE9B2 /* CardFrontView.swift */,
+				84B8B1391DB5E03D00FEE9B2 /* CardBackView.swift */,
 			);
 			name = "Card Views";
 			sourceTree = "<group>";
